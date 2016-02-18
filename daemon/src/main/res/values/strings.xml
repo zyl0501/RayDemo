@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Daemon</string>
+    <string name="app_name_daemon">Daemon</string>
 </resources>
