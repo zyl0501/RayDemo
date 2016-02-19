@@ -1,4 +1,26 @@
 <resources>
     <string name="app_name">Sample</string>
     <string name="app_name_sample">Sample</string>
+    <string name="app_name_sample_hugo">Sample_Hugo</string>
+    <string name="app_name_sample_job_schedule">Sample_Job_Schedule</string>
+
+
+
+    <string name="onstoptask">onStopTask</string>
+    <string name="onstarttask">onStartTask</string>
+    <string name="defaultparamtext">task params will show up here.</string>
+    <string name="schedule_job_button_text">Schedule Job</string>
+    <string name="cancel_all_jobs_button_text">Cancel all</string>
+    <string name="finish_job_button_text">taskFinished</string>
+    <string name="idle_mode_text">Requires device in idle mode.</string>
+    <string name="charging_caption">Charging:</string>
+    <string name="charging_text">Requires device plugged in.</string>
+    <string name="idle_caption">Idle:</string>
+    <string name="constraints">Constraints</string>
+    <string name="connectivity">Connectivity:</string>
+    <string name="any">Any</string>
+    <string name="unmetered">WiFi</string>
+    <string name="timing">Timing:</string>
+    <string name="delay">Delay:</string>
+    <string name="deadline">Deadline:</string>
 </resources>

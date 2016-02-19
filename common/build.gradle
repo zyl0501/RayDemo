@@ -16,12 +16,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    sourceSets {
-        main {
-            jni.srcDirs = []
-        }
-    }
 }
 
 dependencies {

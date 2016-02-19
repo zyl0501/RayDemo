@@ -11,6 +11,31 @@
                 <category android:name="com.ray.demo.RAY_DEMO" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".HugoActivity"
+            android:label="@string/app_name_sample_hugo"
+            android:theme="@style/Base.Theme.AppCompat.Light" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.ray.demo.RAY_DEMO" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".job.JobScheduleActivity"
+            android:label="@string/app_name_sample_job_schedule"
+            android:windowSoftInputMode="stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.ray.demo.RAY_DEMO" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".job.TestJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
     </application>
 
 </manifest>

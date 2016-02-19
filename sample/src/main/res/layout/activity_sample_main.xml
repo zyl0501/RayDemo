@@ -7,20 +7,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="click_Subscribe"
-        android:text="Subscribe"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="click_Schedule"
-        android:text="Schedule"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="click_Map"
-        android:text="Map"
+        android:onClick="click_Jni"
+        android:text="Jni"
         />
 
     <TextView
