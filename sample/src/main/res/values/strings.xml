@@ -2,6 +2,7 @@
     <string name="app_name">Sample</string>
     <string name="app_name_sample">Sample</string>
     <string name="app_name_sample_hugo">Sample_Hugo</string>
+    <string name="app_name_sample_data_bind">Sample_DataBind</string>
     <string name="app_name_sample_job_schedule">Sample_Job_Schedule</string>
 
 

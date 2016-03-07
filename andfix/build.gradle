@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = ['src/main/jni_']
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+}
+
+// 编译NDK代码
+task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
+
+    // android.mk 地址 ，自行更改
+    def androidMK = "$projectDir/src/main/jni/Android.mk"
+    // application.mk 地址， 自行更改
+    def applicationMK = "$projectDir/src/main/jni/Application.mk"
+
+    def ndkDir = project.plugins.findPlugin('com.android.library').sdkHandler.getNdkFolder()
+
+    def cmd = ["$ndkDir/ndk-build", "NDK_PROJECT_PATH=$buildDir",
+               "APP_BUILD_SCRIPT=$androidMK", "NDK_APPLICATION_MK=$applicationMK"]
+
+    commandLine cmd
+}
+
+// 打包native库, 会在编译java代码后执行
+task ndkLibsToJar(type: Zip, dependsOn: ["compileDebugJava", ndkBuild],
+        description: 'Create a JAR file of the native libs') {
+
+    destinationDir new File(projectDir, 'libs')
+    baseName 'ndk-libs'
+    extension 'jar'
+    from(new File(buildDir, 'libs')) { include '**/*.so' }
+    into 'lib/'
+}

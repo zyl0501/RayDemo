@@ -22,6 +22,12 @@
         android:onClick="click_Map"
         android:text="Map"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click_FlatMap"
+        android:text="FlatMap"
+        />
 
     <TextView
         android:id="@+id/console_tv"

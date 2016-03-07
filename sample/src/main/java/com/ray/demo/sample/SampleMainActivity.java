@@ -5,17 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ray.demo.sample.jni.HelloJni;
-
 /**
  *
  * Created by Ray on 16/2/17.
  */
 public class SampleMainActivity extends AppCompatActivity {
 
-    static {
-        System.loadLibrary("hell");
-    }
+//    static {
+//        System.loadLibrary("hell");
+//    }
 
     TextView consoleTv;
 
@@ -27,6 +25,6 @@ public class SampleMainActivity extends AppCompatActivity {
     }
 
     public void click_Jni(View view) {
-        consoleTv.append(new HelloJni().stringFromJNI());
+//        consoleTv.append(new HelloJni().stringFromJNI());
     }
 }

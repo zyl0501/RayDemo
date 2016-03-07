@@ -27,16 +27,20 @@ android {
 
     sourceSets {
         main {
-            jni.srcDirs = []
+            jni.srcDirs = ['/src/main/jni_']
             jniLibs.srcDirs = []
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.2.0'
     compile project(':common')
+    compile 'com.android.support:design:23.2.0'
 }

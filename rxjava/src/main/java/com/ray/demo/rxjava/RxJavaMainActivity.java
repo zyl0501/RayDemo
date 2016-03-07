@@ -17,6 +17,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -147,19 +148,65 @@ public class RxJavaMainActivity extends AppCompatActivity {
                 });
     }
 
-    public void click_Map(View view){
-//        Observable.just("images/logo.png") // 输入类型 String
-//                .map(new Func1<String, Bitmap>() {
-//                    @Override
-//                    public Bitmap call(String filePath) { // 参数类型 String
-//                        return getBitmapFromPath(filePath); // 返回类型 Bitmap
-//                    }
-//                })
-//                .subscribe(new Action1<Bitmap>() {
-//                    @Override
-//                    public void call(Bitmap bitmap) { // 参数类型 Bitmap
-//                        showBitmap(bitmap);
-//                    }
-//                });
+    public void click_Map(View view) {
+        consoleTv.setText(null);
+        Observable.just("images/logo.png") // 输入类型 String
+                .map(new Func1<String, Integer>() {
+                    @Override
+                    public Integer call(String filePath) { // 参数类型 String
+                        return R.mipmap.ic_android; // 返回类型 Bitmap
+                    }
+                })
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer drawableRes) { // 参数类型 Bitmap
+                        consoleTv.append("[img]");
+                        consoleTv.append("\n");
+                        Drawable drawable = getResources().getDrawable(drawableRes);
+                        drawable.setBounds(0, 0, 200, 200);
+                        SpannableString spannableString = new SpannableString(consoleTv.getEditableText());
+                        int index = consoleTv.getEditableText().toString().indexOf("[img]");
+                        spannableString.setSpan(new ImageSpan(drawable), index, index + 5, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                        consoleTv.setText(spannableString);
+//                        consoleTv.setMovementMethod(LinkMovementMethod.getInstance());
+                    }
+                });
+    }
+
+    public void click_FlatMap(View view) {
+        consoleTv.setText(null);
+
+        Subscriber<Integer> subscriber = new Subscriber<Integer>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Integer course) {
+                consoleTv.append("" + course);
+            }
+        };
+
+        Observable.from(new String[]{"a", "b"})
+                .flatMap(new Func1<String, Observable<Integer>>() {
+                    @Override
+                    public Observable<Integer> call(String str) {
+                        if ("a".equals(str)) {
+                            return Observable.from(new Integer[]{11, 12});
+                        }
+                        if ("b".equals(str)) {
+                            return Observable.from(new Integer[]{21, 22});
+                        }
+
+                        return null;
+                    }
+                })
+                .subscribe(subscriber);
     }
 }
