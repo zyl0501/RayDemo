@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GoogleIO2016NumberView">
+        <attr format="enum" name="value">
+            <enum name="zero" value="0"/>
+            <enum name="one" value="1"/>
+            <enum name="two" value="2"/>
+            <enum name="three" value="3"/>
+            <enum name="four" value="4"/>
+            <enum name="five" value="5"/>
+            <enum name="six" value="6"/>
+            <enum name="seven" value="7"/>
+            <enum name="eight" value="8"/>
+            <enum name="nine" value="9"/>
+        </attr>
+        <attr format="dimension" name="size"/>
+    </declare-styleable>
+
+    <declare-styleable name="ForegroundLinearLayout">
+        <attr name="android:foreground"/>
+        <attr name="android:foregroundGravity"/>
+        <attr format="boolean" name="foregroundInsidePadding"/>
+    </declare-styleable>
+</resources>
