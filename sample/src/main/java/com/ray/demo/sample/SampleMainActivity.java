@@ -26,6 +26,5 @@ public class SampleMainActivity extends AppCompatActivity {
 
     public void click_Jni(View view) {
 //        consoleTv.append(new HelloJni().stringFromJNI());
-        Solution.singleNumber(new int[]{0,0,1,2});
     }
 }

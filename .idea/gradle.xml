@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/daemon" />
             <option value="$PROJECT_DIR$/dagger2" />
             <option value="$PROJECT_DIR$/guava" />
+            <option value="$PROJECT_DIR$/retrofit" />
             <option value="$PROJECT_DIR$/rxjava" />
             <option value="$PROJECT_DIR$/sample" />
           </set>
