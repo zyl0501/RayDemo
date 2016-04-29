@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <!-- Api 21-->
+        <item name="android:overlapAnchor">false</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_width">48dp</item>
+    </style>
+
+    <style name="AppTheme" parent="@style/AppThemeBase">
+        <!--<item name="android:textColorPrimary">@android:color/black</item>-->
+        <!--<item name="android:colorPrimaryDark">@color/black</item>-->
+        <!--<item name="android:colorControlNormal">@android:color/white</item>-->
+
+        <!-- enable window content transitions -->
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform</item>
+    </style>
+</resources>
