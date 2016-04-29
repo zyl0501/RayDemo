@@ -3,8 +3,9 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:\Program Files\Android\Android Studio\gradle\gradle-2.10" />
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
@@ -16,7 +17,27 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/daemon" />
             <option value="$PROJECT_DIR$/dagger2" />
+            <option value="$PROJECT_DIR$/greendaogenerate" />
             <option value="$PROJECT_DIR$/guava" />
+            <option value="$PROJECT_DIR$/im_huanxin" />
+            <option value="$PROJECT_DIR$/retrofit" />
+            <option value="$PROJECT_DIR$/rxjava" />
+            <option value="$PROJECT_DIR$/sample" />
+          </set>
+        </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/andfix" />
+            <option value="$PROJECT_DIR$/andfixdemo" />
+            <option value="$PROJECT_DIR$/animatordigit" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/daemon" />
+            <option value="$PROJECT_DIR$/dagger2" />
+            <option value="$PROJECT_DIR$/greendaogenerate" />
+            <option value="$PROJECT_DIR$/guava" />
+            <option value="$PROJECT_DIR$/im_huanxin" />
             <option value="$PROJECT_DIR$/retrofit" />
             <option value="$PROJECT_DIR$/rxjava" />
             <option value="$PROJECT_DIR$/sample" />

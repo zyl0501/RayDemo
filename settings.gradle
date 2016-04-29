@@ -1,1 +1,1 @@
-include ':app', ':rxjava', ':sample', ':daemon', ':common', ':guava', ':andfixdemo', ':andfix', ':dagger2', ':animatordigit', ':retrofit'
+include ':app', ':rxjava', ':sample', ':daemon', ':common', ':guava', ':andfixdemo', ':andfix', ':dagger2', ':animatordigit', ':retrofit', ':greendaogenerate', ':im_huanxin'

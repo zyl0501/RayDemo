@@ -1,9 +1,9 @@
 .gradle
 /local.properties
 .DS_Store
-/build
 /captures
 /.idea
 app/src/main/.DS_Store
 
 *.iml
+**/build
