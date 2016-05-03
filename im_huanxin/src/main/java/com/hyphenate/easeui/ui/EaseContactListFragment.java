@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ui;
+package com.hyphenate.easeui.ui;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

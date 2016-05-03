@@ -15,14 +15,14 @@ android {
     signingConfigs {
 
         debug{
-            storeFile file("E:\\workspace\\RayDemo\\demo.jks")
+            storeFile file("..\\demo.jks")
             storePassword "123zxc"
             keyAlias "ray"
             keyPassword "123zxc"
         }
 
         release {
-            storeFile file("E:\\workspace\\RayDemo\\demo.jks")
+            storeFile file("..\\demo.jks")
             storePassword "123zxc"
             keyAlias "ray"
             keyPassword "123zxc"

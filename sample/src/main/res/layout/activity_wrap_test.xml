@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@android:color/holo_red_light"
+        />
+    
+    <com.ray.demo.sample.CustomView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_blue_light"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/raw_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:textSize="30sp"
+            android:textColor="@android:color/holo_green_light"
+            android:text="AAAAABBB"
+            />
+
+        <com.ray.demo.sample.TextLayoutView
+            android:id="@+id/text_layout_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="30sp"
+            android:textColor="@android:color/holo_green_light"
+            android:text="DD"
+            />
+    </LinearLayout>
+
+</LinearLayout>

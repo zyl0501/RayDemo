@@ -1,4 +1,4 @@
-package ui;
+package com.hyphenate.easeui.ui;
 
 import android.content.Context;
 import android.os.Bundle;
