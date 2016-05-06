@@ -59,6 +59,7 @@ public class MyClass {
         entity.addStringProperty("RequestDeptName");
         entity.addStringProperty("ProviderName");
         entity.addStringProperty("RequestedDate");
+        entity.addStringProperty("ProcedureName");
         entity.addStringProperty("ObservationUID").unique();
     }
 
