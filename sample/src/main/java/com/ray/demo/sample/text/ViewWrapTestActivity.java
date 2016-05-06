@@ -1,9 +1,11 @@
-package com.ray.demo.sample;
+package com.ray.demo.sample.text;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
+
+import com.ray.demo.sample.R;
 
 /**
  * Created by qq448 on 2016/5/3.

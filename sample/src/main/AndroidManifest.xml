@@ -66,13 +66,24 @@
         </activity>
 
         <activity
+            android:name=".MeasureTestActivity"
+            android:label="@string/app_name_measure"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.ray.demo.RAY_DEMO" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".transition.TranSubActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">
         </activity>
 
         <activity
-            android:name=".ViewWrapTestActivity"
+            android:name=".text.ViewWrapTestActivity"
             android:label="@string/app_name_wrap"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">

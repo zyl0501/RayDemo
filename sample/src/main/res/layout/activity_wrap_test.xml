@@ -9,12 +9,6 @@
         android:background="@android:color/holo_red_light"
         />
     
-    <com.ray.demo.sample.CustomView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@android:color/holo_blue_light"
-        />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -29,7 +23,7 @@
             android:text="AAAAABBB"
             />
 
-        <com.ray.demo.sample.TextLayoutView
+        <com.ray.demo.sample.text.TextLayoutView
             android:id="@+id/text_layout_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

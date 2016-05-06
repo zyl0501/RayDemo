@@ -1,4 +1,4 @@
-package com.ray.demo.sample;
+package com.ray.demo.sample.text;
 
 import android.annotation.TargetApi;
 import android.content.Context;
