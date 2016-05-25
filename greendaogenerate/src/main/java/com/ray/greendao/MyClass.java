@@ -60,6 +60,8 @@ public class MyClass {
         entity.addStringProperty("ProviderName");
         entity.addStringProperty("RequestedDate");
         entity.addStringProperty("ProcedureName");
+        entity.addStringProperty("ResultAssistantID");
+        entity.addStringProperty("ResultAssistantName");
         entity.addStringProperty("ObservationUID").unique();
     }
 
@@ -98,7 +100,7 @@ public class MyClass {
         Entity customer = schema.addEntity("OrganizationEntity");
         customer.addIdProperty();
         customer.addStringProperty("OrganizationID").notNull();
-        customer.addStringProperty("OrganizationName").notNull();
+        customer.addStringProperty("OrganizationName");
     }
 
     private static void addExamSub(Schema schema){

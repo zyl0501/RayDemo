@@ -44,7 +44,9 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
         public final static Property ProviderName = new Property(18, String.class, "ProviderName", false, "PROVIDER_NAME");
         public final static Property RequestedDate = new Property(19, String.class, "RequestedDate", false, "REQUESTED_DATE");
         public final static Property ProcedureName = new Property(20, String.class, "ProcedureName", false, "PROCEDURE_NAME");
-        public final static Property ObservationUID = new Property(21, String.class, "ObservationUID", false, "OBSERVATION_UID");
+        public final static Property ResultAssistantID = new Property(21, String.class, "ResultAssistantID", false, "RESULT_ASSISTANT_ID");
+        public final static Property ResultAssistantName = new Property(22, String.class, "ResultAssistantName", false, "RESULT_ASSISTANT_NAME");
+        public final static Property ObservationUID = new Property(23, String.class, "ObservationUID", false, "OBSERVATION_UID");
     };
 
 
@@ -81,7 +83,9 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
                 "\"PROVIDER_NAME\" TEXT," + // 18: ProviderName
                 "\"REQUESTED_DATE\" TEXT," + // 19: RequestedDate
                 "\"PROCEDURE_NAME\" TEXT," + // 20: ProcedureName
-                "\"OBSERVATION_UID\" TEXT UNIQUE );"); // 21: ObservationUID
+                "\"RESULT_ASSISTANT_ID\" TEXT," + // 21: ResultAssistantID
+                "\"RESULT_ASSISTANT_NAME\" TEXT," + // 22: ResultAssistantName
+                "\"OBSERVATION_UID\" TEXT UNIQUE );"); // 23: ObservationUID
     }
 
     /** Drops the underlying database table. */
@@ -200,9 +204,19 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
             stmt.bindString(21, ProcedureName);
         }
  
+        String ResultAssistantID = entity.getResultAssistantID();
+        if (ResultAssistantID != null) {
+            stmt.bindString(22, ResultAssistantID);
+        }
+ 
+        String ResultAssistantName = entity.getResultAssistantName();
+        if (ResultAssistantName != null) {
+            stmt.bindString(23, ResultAssistantName);
+        }
+ 
         String ObservationUID = entity.getObservationUID();
         if (ObservationUID != null) {
-            stmt.bindString(22, ObservationUID);
+            stmt.bindString(24, ObservationUID);
         }
     }
 
@@ -237,7 +251,9 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
             cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // ProviderName
             cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // RequestedDate
             cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // ProcedureName
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21) // ObservationUID
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // ResultAssistantID
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // ResultAssistantName
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23) // ObservationUID
         );
         return entity;
     }
@@ -266,7 +282,9 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
         entity.setProviderName(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
         entity.setRequestedDate(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
         entity.setProcedureName(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setObservationUID(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setResultAssistantID(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setResultAssistantName(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setObservationUID(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
      }
     
     /** @inheritdoc */
