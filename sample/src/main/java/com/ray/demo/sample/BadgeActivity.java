@@ -37,7 +37,7 @@ public class BadgeActivity extends AppCompatActivity {
         bind(tab_item, BadgeGraph.t_tl_tab_all_item);
 
         BadgeHelper.I().plus(BadgeGraph.t_tl_tab_all_item, 1, BadgeNumber.BadgeMode.NUMBER);
-//        BadgeHelper.I().plus(BadgeGraph.t_tl_tab_name, 2, BadgeNumber.BadgeMode.NUMBER);
+        BadgeHelper.I().plus(BadgeGraph.t_tl_tab_name, 2, BadgeNumber.BadgeMode.NUMBER);
         BadgeHelper.I().plus(BadgeGraph.t_tl_tab_push, 1, BadgeNumber.BadgeMode.DOT);
     }
 
@@ -45,7 +45,7 @@ public class BadgeActivity extends AppCompatActivity {
         badgeView.setTag(id);
         BadgeHelper.I().addListener(id, new BadgeHelper.OnChangeListener() {
             @Override
-            public void onChange(BadgeNumber badge, int oldCount) {
+            public void onChange(BadgeNumber badge) {
                 badgeView.setCount(badge.getCount());
                 badgeView.setMode(badge.getDisplayMode() == BadgeNumber.BadgeMode.NUMBER);
                 badgeView.showBadge(badge.getCount() > 0);

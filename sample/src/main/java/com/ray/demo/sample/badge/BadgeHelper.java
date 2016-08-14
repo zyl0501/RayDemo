@@ -2,10 +2,8 @@ package com.ray.demo.sample.badge;
 
 import android.util.SparseArray;
 
-import com.ray.demo.common.Log;
 import com.ray.demo.sample.badge.BadgeNumber.BadgeMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -90,65 +88,55 @@ public class BadgeHelper {
             updateBadge(id, count, mode);
             throw new RuntimeException("cannot insert already exist node!");
         } else {
-            BadgeNumberNode insertNode = new BadgeNumberNode();
-            BadgeNumber number = new BadgeNumber(id);
-            number.setCount(count);
-            number.setDisplayMode(mode);
-            insertNode.setObj(number);
-            insertNode.setSelfId(id);
+            BadgeNumberNode insertNode = generateNode(id, count, mode);
             badgeArray.put(id, insertNode);
-            notifyChange(number, 0);
+            notifyChange(insertNode.getObj());
+
             int parentId = getParentId(id);
-            insertNode.setParentId(parentId);
             BadgeNumberNode parentNode = badgeArray.get(parentId);
-            if (parentNode == null) {
-                insertParent(insertNode);
-            } else {
-                insertNode.setParentNode(parentNode);
-                parentNode.addChildNode(insertNode);
-                int newCount = calCount(parentNode, parentNode.getObj().getDisplayMode());
-                updateBadge(parentId, newCount,mode);
+            BadgeNumberNode childNode = insertNode;
+
+            //父节点已存在，重新计算下mode和count
+            if (parentNode != null) {
+                childNode.setParentId(parentId);
+                childNode.setParentNode(parentNode);
+                parentNode.addChildNode(childNode);
+                reCalculate(parentNode, true);
+                return;
+            }
+            //父节点不存在，需要创建并添加
+            while (parentNode == null) {
+                parentNode = generateNode(parentId, count, mode);
+                childNode.setParentId(parentId);
+                childNode.setParentNode(parentNode);
+                parentNode.addChildNode(childNode);
+                badgeArray.put(parentId, parentNode);
+                notifyChange(parentNode.getObj());
+
+                childNode = parentNode;
+                parentId = getParentId(parentId);
+                parentNode = badgeArray.get(parentId);
+
+                //最后到达root节点的时候，需要再绑定一次关系
+                if(parentNode != null){
+                    childNode.setParentId(parentId);
+                    childNode.setParentNode(parentNode);
+                    parentNode.addChildNode(childNode);
+                }
             }
         }
     }
 
-    private void insertParent(BadgeNumberNode childNode) {
-        int parentId = getParentId(childNode.getSelfId());
-        BadgeNumberNode parentNode = badgeArray.get(parentId);
-        if (parentNode != null) {
-            childNode.setParentNode(parentNode);
-            childNode.setParentId(parentId);
-        }
-        while (parentNode == null) {
-            BadgeNumber childNumber = childNode.getObj();
-            BadgeNumber number = new BadgeNumber(parentId);
-            number.setDisplayMode(childNumber.getDisplayMode());
-            number.setCount(childNumber.getCount());
-            List<TreeNode<BadgeNumber>> children = new ArrayList<>();
-            children.add(childNode);
-            //创建parentNode
-            parentNode = new BadgeNumberNode();
-            parentNode.setChildList(children);
-            parentNode.setSelfId(parentId);
-            parentNode.setObj(number);
-            //parent 的 parent
-            int ppId = getParentId(parentId);
-            BadgeNumberNode ppNode = badgeArray.get(ppId);
-            parentNode.setParentId(ppId);
-            parentNode.setParentNode(ppNode);
-            badgeArray.put(parentId, parentNode);
-
-            //设置childNode的parent属性
-            childNode.setParentNode(parentNode);
-            childNode.setParentId(parentId);
-
-            notifyChange(number, 0);
-            childNode = parentNode;
-            parentNode = ppNode;
-            parentId = ppId;
-        }
+    private BadgeNumberNode generateNode(int id, int count, int mode) {
+        BadgeNumberNode node = new BadgeNumberNode();
+        BadgeNumber number = new BadgeNumber(id);
+        number.setCount(count);
+        number.setDisplayMode(mode);
+        number.setBadgeId(id);
+        node.setObj(number);
+        node.setSelfId(id);
+        return node;
     }
-
 
     private void updateBadge(int id, int newCount, int newMode) {
         BadgeNumberNode node = badgeArray.get(id);
@@ -162,23 +150,47 @@ public class BadgeHelper {
             delBadge(node);
             return;
         }
-        TreeNode<BadgeNumber> parentNode = node.getParentNode();
-        TreeNode<BadgeNumber> childNode = node;
-        BadgeNumber childNum = childNode.getObj();
-        int oldChildCount = childNum.getCount();
-        int oldMode = childNum.getDisplayMode();
+        BadgeNumber childNum = node.getObj();
         childNum.setCount(newCount);
         childNum.setDisplayMode(newMode);
-        notifyChange(childNum, oldChildCount);
+        notifyChange(childNum);
+
+        TreeNode<BadgeNumber> parentNode = node.getParentNode();
         while (parentNode != null) {
             BadgeNumber parentNum = parentNode.getObj();
-            int oldParentCount = parentNum.getCount();
-            int newParentCount = calCount(parentNode, parentNum.getDisplayMode());
-            parentNum.setCount(newParentCount);
-            parentNum.setDisplayMode(calMode(parentNode));
-            notifyChange(parentNum, oldParentCount);
-
+            int mode = calMode(parentNode);
+            int count = calCount(parentNode, mode);
+            parentNum.setCount(count);
+            parentNum.setDisplayMode(mode);
             parentNode = parentNode.getParentNode();
+
+            notifyChange(parentNum);
+        }
+    }
+
+    private void reCalculate(TreeNode<BadgeNumber> node, boolean notifyChange) {
+        BadgeNumber number = node.getObj();
+        int oldCount = number.getCount();
+        int oldMode = number.getDisplayMode();
+        int newMode = calMode(node);
+        int newCount = calCount(node, newMode);
+        if (oldCount == newCount && oldMode == newMode) {
+            return;
+        }
+        number.setCount(newCount);
+        number.setDisplayMode(newMode);
+        if (notifyChange) notifyChange(number);
+
+        TreeNode<BadgeNumber> parentNode = node.getParentNode();
+        while (parentNode != null) {
+            BadgeNumber parentNum = parentNode.getObj();
+            int mode = calMode(parentNode);
+            int count = calCount(parentNode, mode);
+            parentNum.setCount(count);
+            parentNum.setDisplayMode(mode);
+            parentNode = parentNode.getParentNode();
+
+            notifyChange(parentNum);
         }
     }
 
@@ -186,69 +198,55 @@ public class BadgeHelper {
         if (node == null) {
             return;
         }
-        TreeNode<BadgeNumber> parentNode = node.getParentNode();
-        TreeNode<BadgeNumber> childNode = node;
+        TreeNode<BadgeNumber> singleLineTop = findLineTopParent(node);
+        delChild(singleLineTop);
+
+        TreeNode<BadgeNumber> parentNode = singleLineTop.getParentNode();
+        if (parentNode != null) {
+            parentNode.deleteChildNode(singleLineTop.getSelfId());
+            badgeArray.remove(singleLineTop.getSelfId());
+            notifyDisplay(singleLineTop.getObj(), false);
+        }
         while (parentNode != null) {
-            delChild(childNode);
-            badgeArray.remove(childNode.getSelfId());
-            notifyDisplay(childNode.getObj(), false);
-            parentNode.deleteChildNode(childNode.getSelfId());
-
             BadgeNumber parentNum = parentNode.getObj();
-            BadgeNumber childNum = childNode.getObj();
-            int parentMode = parentNum.getDisplayMode();
-            int childMode = childNum.getDisplayMode();
+            int mode = calMode(parentNode);
+            int count = calCount(parentNode, mode);
+            parentNum.setCount(count);
+            parentNum.setDisplayMode(mode);
+            parentNode = parentNode.getParentNode();
 
-            if (parentMode == BadgeMode.NUMBER) {
-                int numCount = calCount(parentNode, BadgeMode.NUMBER);
-                if (numCount <= 0) {
-                    int dotCount = calCount(parentNode, BadgeMode.DOT);
-                    if (dotCount <= 0) {
-                        childNode = parentNode;
-                        parentNode = parentNode.getParentNode();
-                        continue;
-                    } else {
-                        updateBadge(parentNum.getBadgeId(), dotCount, BadgeMode.DOT);
-                        break;
-                    }
-                } else {
-                    updateBadge(parentNum.getBadgeId(), numCount,BadgeMode.NUMBER);
-                    break;
-                }
-            } else {
-                //父节点是点类型，孩子节点是数字类型，不应该存在这种情况
-                if (childMode == BadgeMode.NUMBER) {
-                    Log.w("badge", "the mode between child and parent is error?");
-                    break;
-                } else {
-                    int dotCount = calCount(parentNode, BadgeMode.DOT);
-                    if (dotCount <= 0) {
-                        childNode = parentNode;
-                        parentNode = parentNode.getParentNode();
-                        continue;
-                    } else {
-                        updateBadge(parentNum.getBadgeId(), dotCount,BadgeMode.DOT);
-                        break;
-                    }
-                }
-            }
+            notifyChange(parentNum);
         }
     }
 
     private void delChild(TreeNode<BadgeNumber> node) {
         List<TreeNode<BadgeNumber>> children = node.getChildList();
         if (children == null || children.size() <= 0) {
-            node.getParentNode().deleteChildNode(node.getSelfId());
-            badgeArray.remove(node.getSelfId());
-            notifyDisplay(node.getObj(), false);
             return;
         }
-        for (TreeNode<BadgeNumber> ch : children) {
-            delChild(ch);
-            badgeArray.remove(ch.getSelfId());
-            notifyDisplay(ch.getObj(), false);
+
+        while (!children.isEmpty()) {
+            TreeNode<BadgeNumber> n = children.get(0);
+            children.remove(0);
+            badgeArray.remove(n.getSelfId());
+            notifyDisplay(n.getObj(), false);
+            if (n.getChildList() != null)
+                children.addAll(n.getChildList());
         }
         node.setChildList(null);
+    }
+
+    private TreeNode<BadgeNumber> findLineTopParent(TreeNode<BadgeNumber> node) {
+        TreeNode<BadgeNumber> parent = node.getParentNode();
+        boolean hasFind = false;
+        while (parent != null && parent.getChildList() != null && parent.getChildList().size() == 1) {
+            if(parent.getSelfId() == BadgeGraph.root){
+                return parent;
+            }
+            parent = parent.getParentNode();
+            hasFind = true;
+        }
+        return hasFind ? parent : node;
     }
 
     /**
@@ -268,7 +266,9 @@ public class BadgeHelper {
         return count;
     }
 
-    private int calMode(TreeNode<BadgeNumber> node){
+    private
+    @BadgeMode
+    int calMode(TreeNode<BadgeNumber> node) {
         List<TreeNode<BadgeNumber>> children = node.getChildList();
         if (children != null && children.size() > 0) {
             for (TreeNode<BadgeNumber> child : children) {
@@ -285,10 +285,10 @@ public class BadgeHelper {
         return badge.parent;
     }
 
-    private void notifyChange(BadgeNumber badge, int oldCount) {
+    private void notifyChange(BadgeNumber badge) {
         OnChangeListener listener = listeners.get(badge.getBadgeId());
         if (listener != null) {
-            listener.onChange(badge, oldCount);
+            listener.onChange(badge);
         }
     }
 
@@ -304,7 +304,7 @@ public class BadgeHelper {
     }
 
     public interface OnChangeListener {
-        void onChange(BadgeNumber badge, int oldCount);
+        void onChange(BadgeNumber badge);
 
         void onDisplay(BadgeNumber badge, boolean show);
     }
