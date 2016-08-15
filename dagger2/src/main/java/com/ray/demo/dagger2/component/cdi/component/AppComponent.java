@@ -3,7 +3,6 @@ package com.ray.demo.dagger2.component.cdi.component;
 import com.ray.demo.dagger2.component.cdi.PerApp;
 import com.ray.demo.dagger2.component.cdi.module.AppModule;
 import com.ray.demo.dagger2.component.cdi.module.SplashModule;
-import com.ray.demo.dagger2.component.cdi.module.UserModule;
 
 import dagger.Component;
 
@@ -15,5 +14,5 @@ import dagger.Component;
 public interface AppComponent {
     SplashComponent plus(SplashModule module);
 
-    UserComponent plus(UserModule module);
+//    UserComponent plus(UserModule module);
 }

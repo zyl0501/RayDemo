@@ -17,6 +17,7 @@ public class QueryInfoRet {
     private String ObservationDate;
     private String MedRecNO;
     private String PatientClass;
+    private String PatientMasterID;
     private String InPatientNO;
     private String OutPatientNO;
     private String PointOfCare;
@@ -38,7 +39,7 @@ public class QueryInfoRet {
         this.id = id;
     }
 
-    public QueryInfoRet(Long id, String AccessionNumber, String Name, String Sex, String Age, String AgeUnit, String ServiceSectID, String ServiceText, String ObservationDate, String MedRecNO, String PatientClass, String InPatientNO, String OutPatientNO, String PointOfCare, String Bed, String OrganizationID, String RequestOrgName, String RequestDeptName, String ProviderName, String RequestedDate, String ProcedureName, String ResultAssistantID, String ResultAssistantName, String ObservationUID) {
+    public QueryInfoRet(Long id, String AccessionNumber, String Name, String Sex, String Age, String AgeUnit, String ServiceSectID, String ServiceText, String ObservationDate, String MedRecNO, String PatientClass, String PatientMasterID, String InPatientNO, String OutPatientNO, String PointOfCare, String Bed, String OrganizationID, String RequestOrgName, String RequestDeptName, String ProviderName, String RequestedDate, String ProcedureName, String ResultAssistantID, String ResultAssistantName, String ObservationUID) {
         this.id = id;
         this.AccessionNumber = AccessionNumber;
         this.Name = Name;
@@ -50,6 +51,7 @@ public class QueryInfoRet {
         this.ObservationDate = ObservationDate;
         this.MedRecNO = MedRecNO;
         this.PatientClass = PatientClass;
+        this.PatientMasterID = PatientMasterID;
         this.InPatientNO = InPatientNO;
         this.OutPatientNO = OutPatientNO;
         this.PointOfCare = PointOfCare;
@@ -151,6 +153,14 @@ public class QueryInfoRet {
 
     public void setPatientClass(String PatientClass) {
         this.PatientClass = PatientClass;
+    }
+
+    public String getPatientMasterID() {
+        return PatientMasterID;
+    }
+
+    public void setPatientMasterID(String PatientMasterID) {
+        this.PatientMasterID = PatientMasterID;
     }
 
     public String getInPatientNO() {

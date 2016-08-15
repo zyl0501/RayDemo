@@ -1,7 +1,7 @@
 package com.ray.demo.dagger2.component.cdi.module;
 
 import com.ray.demo.dagger2.app.present.UserPresent;
-import com.ray.demo.dagger2.component.cdi.PerActivity;
+import com.ray.demo.dagger2.component.cdi.PerUser;
 
 import javax.inject.Named;
 
@@ -13,12 +13,12 @@ public class UserModule {
 
     @Named("1 arg")
     @Provides
-    UserPresent userPresent2(String info) {
+    UserPresent userPresent2(@Named("user") String info) {
         return new UserPresent(info);
     }
 
     @Named("no arg")
-    @PerActivity
+    @PerUser
     @Provides
     UserPresent userPresent(){
         return new UserPresent();
@@ -30,6 +30,7 @@ public class UserModule {
     }
 
     @Provides
+    @Named("user")
     String getInfo() {
         return "User module generate info";
     }

@@ -9,6 +9,8 @@ public class DepartmentEntity {
     private Long id;
     /** Not-null value. */
     private String DeptName;
+    /** Not-null value. */
+    private String DeptID;
 
     public DepartmentEntity() {
     }
@@ -17,9 +19,10 @@ public class DepartmentEntity {
         this.id = id;
     }
 
-    public DepartmentEntity(Long id, String DeptName) {
+    public DepartmentEntity(Long id, String DeptName, String DeptID) {
         this.id = id;
         this.DeptName = DeptName;
+        this.DeptID = DeptID;
     }
 
     public Long getId() {
@@ -38,6 +41,16 @@ public class DepartmentEntity {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setDeptName(String DeptName) {
         this.DeptName = DeptName;
+    }
+
+    /** Not-null value. */
+    public String getDeptID() {
+        return DeptID;
+    }
+
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setDeptID(String DeptID) {
+        this.DeptID = DeptID;
     }
 
 }

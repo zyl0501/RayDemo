@@ -27,13 +27,18 @@ public class SearchTemplateEntityDao extends AbstractDao<SearchTemplateEntity, L
         public final static Property SearchName = new Property(1, String.class, "SearchName", false, "SEARCH_NAME");
         public final static Property AccessionNumber = new Property(2, String.class, "AccessionNumber", false, "ACCESSION_NUMBER");
         public final static Property Name = new Property(3, String.class, "Name", false, "NAME");
-        public final static Property MedRecNO = new Property(4, String.class, "MedRecNO", false, "MED_REC_NO");
-        public final static Property OrganizationID = new Property(5, String.class, "OrganizationID", false, "ORGANIZATION_ID");
-        public final static Property RequestDeptName = new Property(6, String.class, "RequestDeptName", false, "REQUEST_DEPT_NAME");
-        public final static Property PatientClass = new Property(7, String.class, "PatientClass", false, "PATIENT_CLASS");
-        public final static Property ServiceSectID = new Property(8, String.class, "ServiceSectID", false, "SERVICE_SECT_ID");
-        public final static Property RequestedDateStart = new Property(9, String.class, "RequestedDateStart", false, "REQUESTED_DATE_START");
-        public final static Property RequestedDateEnd = new Property(10, String.class, "RequestedDateEnd", false, "REQUESTED_DATE_END");
+        public final static Property PatientMasterID = new Property(4, String.class, "PatientMasterID", false, "PATIENT_MASTER_ID");
+        public final static Property MedRecNO = new Property(5, String.class, "MedRecNO", false, "MED_REC_NO");
+        public final static Property OrganizationID = new Property(6, String.class, "OrganizationID", false, "ORGANIZATION_ID");
+        public final static Property RequestDeptName = new Property(7, String.class, "RequestDeptName", false, "REQUEST_DEPT_NAME");
+        public final static Property PatientClass = new Property(8, String.class, "PatientClass", false, "PATIENT_CLASS");
+        public final static Property ServiceSectID = new Property(9, String.class, "ServiceSectID", false, "SERVICE_SECT_ID");
+        public final static Property RequestedDateStart = new Property(10, String.class, "RequestedDateStart", false, "REQUESTED_DATE_START");
+        public final static Property RequestedDateEnd = new Property(11, String.class, "RequestedDateEnd", false, "REQUESTED_DATE_END");
+        public final static Property ObservationDateStart = new Property(12, String.class, "ObservationDateStart", false, "OBSERVATION_DATE_START");
+        public final static Property ObservationDateEnd = new Property(13, String.class, "ObservationDateEnd", false, "OBSERVATION_DATE_END");
+        public final static Property RegTimeStart = new Property(14, String.class, "RegTimeStart", false, "REG_TIME_START");
+        public final static Property RegTimeEnd = new Property(15, String.class, "RegTimeEnd", false, "REG_TIME_END");
     };
 
 
@@ -53,13 +58,18 @@ public class SearchTemplateEntityDao extends AbstractDao<SearchTemplateEntity, L
                 "\"SEARCH_NAME\" TEXT," + // 1: SearchName
                 "\"ACCESSION_NUMBER\" TEXT," + // 2: AccessionNumber
                 "\"NAME\" TEXT," + // 3: Name
-                "\"MED_REC_NO\" TEXT," + // 4: MedRecNO
-                "\"ORGANIZATION_ID\" TEXT," + // 5: OrganizationID
-                "\"REQUEST_DEPT_NAME\" TEXT," + // 6: RequestDeptName
-                "\"PATIENT_CLASS\" TEXT," + // 7: PatientClass
-                "\"SERVICE_SECT_ID\" TEXT," + // 8: ServiceSectID
-                "\"REQUESTED_DATE_START\" TEXT," + // 9: RequestedDateStart
-                "\"REQUESTED_DATE_END\" TEXT);"); // 10: RequestedDateEnd
+                "\"PATIENT_MASTER_ID\" TEXT," + // 4: PatientMasterID
+                "\"MED_REC_NO\" TEXT," + // 5: MedRecNO
+                "\"ORGANIZATION_ID\" TEXT," + // 6: OrganizationID
+                "\"REQUEST_DEPT_NAME\" TEXT," + // 7: RequestDeptName
+                "\"PATIENT_CLASS\" TEXT," + // 8: PatientClass
+                "\"SERVICE_SECT_ID\" TEXT," + // 9: ServiceSectID
+                "\"REQUESTED_DATE_START\" TEXT," + // 10: RequestedDateStart
+                "\"REQUESTED_DATE_END\" TEXT," + // 11: RequestedDateEnd
+                "\"OBSERVATION_DATE_START\" TEXT," + // 12: ObservationDateStart
+                "\"OBSERVATION_DATE_END\" TEXT," + // 13: ObservationDateEnd
+                "\"REG_TIME_START\" TEXT," + // 14: RegTimeStart
+                "\"REG_TIME_END\" TEXT);"); // 15: RegTimeEnd
     }
 
     /** Drops the underlying database table. */
@@ -93,39 +103,64 @@ public class SearchTemplateEntityDao extends AbstractDao<SearchTemplateEntity, L
             stmt.bindString(4, Name);
         }
  
+        String PatientMasterID = entity.getPatientMasterID();
+        if (PatientMasterID != null) {
+            stmt.bindString(5, PatientMasterID);
+        }
+ 
         String MedRecNO = entity.getMedRecNO();
         if (MedRecNO != null) {
-            stmt.bindString(5, MedRecNO);
+            stmt.bindString(6, MedRecNO);
         }
  
         String OrganizationID = entity.getOrganizationID();
         if (OrganizationID != null) {
-            stmt.bindString(6, OrganizationID);
+            stmt.bindString(7, OrganizationID);
         }
  
         String RequestDeptName = entity.getRequestDeptName();
         if (RequestDeptName != null) {
-            stmt.bindString(7, RequestDeptName);
+            stmt.bindString(8, RequestDeptName);
         }
  
         String PatientClass = entity.getPatientClass();
         if (PatientClass != null) {
-            stmt.bindString(8, PatientClass);
+            stmt.bindString(9, PatientClass);
         }
  
         String ServiceSectID = entity.getServiceSectID();
         if (ServiceSectID != null) {
-            stmt.bindString(9, ServiceSectID);
+            stmt.bindString(10, ServiceSectID);
         }
  
         String RequestedDateStart = entity.getRequestedDateStart();
         if (RequestedDateStart != null) {
-            stmt.bindString(10, RequestedDateStart);
+            stmt.bindString(11, RequestedDateStart);
         }
  
         String RequestedDateEnd = entity.getRequestedDateEnd();
         if (RequestedDateEnd != null) {
-            stmt.bindString(11, RequestedDateEnd);
+            stmt.bindString(12, RequestedDateEnd);
+        }
+ 
+        String ObservationDateStart = entity.getObservationDateStart();
+        if (ObservationDateStart != null) {
+            stmt.bindString(13, ObservationDateStart);
+        }
+ 
+        String ObservationDateEnd = entity.getObservationDateEnd();
+        if (ObservationDateEnd != null) {
+            stmt.bindString(14, ObservationDateEnd);
+        }
+ 
+        String RegTimeStart = entity.getRegTimeStart();
+        if (RegTimeStart != null) {
+            stmt.bindString(15, RegTimeStart);
+        }
+ 
+        String RegTimeEnd = entity.getRegTimeEnd();
+        if (RegTimeEnd != null) {
+            stmt.bindString(16, RegTimeEnd);
         }
     }
 
@@ -143,13 +178,18 @@ public class SearchTemplateEntityDao extends AbstractDao<SearchTemplateEntity, L
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // SearchName
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // AccessionNumber
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Name
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // MedRecNO
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // OrganizationID
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // RequestDeptName
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // PatientClass
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // ServiceSectID
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // RequestedDateStart
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // RequestedDateEnd
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // PatientMasterID
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // MedRecNO
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // OrganizationID
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // RequestDeptName
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // PatientClass
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // ServiceSectID
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // RequestedDateStart
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // RequestedDateEnd
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // ObservationDateStart
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // ObservationDateEnd
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // RegTimeStart
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15) // RegTimeEnd
         );
         return entity;
     }
@@ -161,13 +201,18 @@ public class SearchTemplateEntityDao extends AbstractDao<SearchTemplateEntity, L
         entity.setSearchName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setAccessionNumber(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setMedRecNO(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setOrganizationID(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setRequestDeptName(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setPatientClass(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setServiceSectID(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setRequestedDateStart(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setRequestedDateEnd(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setPatientMasterID(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setMedRecNO(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setOrganizationID(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setRequestDeptName(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setPatientClass(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setServiceSectID(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setRequestedDateStart(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setRequestedDateEnd(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setObservationDateStart(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setObservationDateEnd(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setRegTimeStart(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setRegTimeEnd(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
      }
     
     /** @inheritdoc */

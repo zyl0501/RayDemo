@@ -1,8 +1,7 @@
 package com.ray.demo.dagger2.component.cdi.module;
 
 import com.ray.demo.dagger2.app.present.AnalyticsManager;
-
-import javax.inject.Singleton;
+import com.ray.demo.dagger2.component.cdi.PerFragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,7 +13,7 @@ import dagger.Provides;
 public class AppModule {
 
     @Provides
-    @Singleton
+    @PerFragment
     AnalyticsManager provideAnalyticsManager() {
         return new AnalyticsManager();
     }

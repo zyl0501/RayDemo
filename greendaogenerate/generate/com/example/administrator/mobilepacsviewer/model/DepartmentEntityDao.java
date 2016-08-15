@@ -25,6 +25,7 @@ public class DepartmentEntityDao extends AbstractDao<DepartmentEntity, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property DeptName = new Property(1, String.class, "DeptName", false, "DEPT_NAME");
+        public final static Property DeptID = new Property(2, String.class, "DeptID", false, "DEPT_ID");
     };
 
 
@@ -41,7 +42,8 @@ public class DepartmentEntityDao extends AbstractDao<DepartmentEntity, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"DEPARTMENT_ENTITY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"DEPT_NAME\" TEXT NOT NULL );"); // 1: DeptName
+                "\"DEPT_NAME\" TEXT NOT NULL ," + // 1: DeptName
+                "\"DEPT_ID\" TEXT NOT NULL );"); // 2: DeptID
     }
 
     /** Drops the underlying database table. */
@@ -60,6 +62,7 @@ public class DepartmentEntityDao extends AbstractDao<DepartmentEntity, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindString(2, entity.getDeptName());
+        stmt.bindString(3, entity.getDeptID());
     }
 
     /** @inheritdoc */
@@ -73,7 +76,8 @@ public class DepartmentEntityDao extends AbstractDao<DepartmentEntity, Long> {
     public DepartmentEntity readEntity(Cursor cursor, int offset) {
         DepartmentEntity entity = new DepartmentEntity( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getString(offset + 1) // DeptName
+            cursor.getString(offset + 1), // DeptName
+            cursor.getString(offset + 2) // DeptID
         );
         return entity;
     }
@@ -83,6 +87,7 @@ public class DepartmentEntityDao extends AbstractDao<DepartmentEntity, Long> {
     public void readEntity(Cursor cursor, DepartmentEntity entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setDeptName(cursor.getString(offset + 1));
+        entity.setDeptID(cursor.getString(offset + 2));
      }
     
     /** @inheritdoc */
