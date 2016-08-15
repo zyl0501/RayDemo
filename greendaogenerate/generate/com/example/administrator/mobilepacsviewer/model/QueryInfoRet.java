@@ -17,6 +17,7 @@ public class QueryInfoRet {
     private String ObservationDate;
     private String MedRecNO;
     private String PatientClass;
+    private String PatientMasterID;
     private String InPatientNO;
     private String OutPatientNO;
     private String PointOfCare;
@@ -27,6 +28,8 @@ public class QueryInfoRet {
     private String ProviderName;
     private String RequestedDate;
     private String ProcedureName;
+    private String ResultAssistantID;
+    private String ResultAssistantName;
     private String ObservationUID;
 
     public QueryInfoRet() {
@@ -36,7 +39,7 @@ public class QueryInfoRet {
         this.id = id;
     }
 
-    public QueryInfoRet(Long id, String AccessionNumber, String Name, String Sex, String Age, String AgeUnit, String ServiceSectID, String ServiceText, String ObservationDate, String MedRecNO, String PatientClass, String InPatientNO, String OutPatientNO, String PointOfCare, String Bed, String OrganizationID, String RequestOrgName, String RequestDeptName, String ProviderName, String RequestedDate, String ProcedureName, String ObservationUID) {
+    public QueryInfoRet(Long id, String AccessionNumber, String Name, String Sex, String Age, String AgeUnit, String ServiceSectID, String ServiceText, String ObservationDate, String MedRecNO, String PatientClass, String PatientMasterID, String InPatientNO, String OutPatientNO, String PointOfCare, String Bed, String OrganizationID, String RequestOrgName, String RequestDeptName, String ProviderName, String RequestedDate, String ProcedureName, String ResultAssistantID, String ResultAssistantName, String ObservationUID) {
         this.id = id;
         this.AccessionNumber = AccessionNumber;
         this.Name = Name;
@@ -48,6 +51,7 @@ public class QueryInfoRet {
         this.ObservationDate = ObservationDate;
         this.MedRecNO = MedRecNO;
         this.PatientClass = PatientClass;
+        this.PatientMasterID = PatientMasterID;
         this.InPatientNO = InPatientNO;
         this.OutPatientNO = OutPatientNO;
         this.PointOfCare = PointOfCare;
@@ -58,6 +62,8 @@ public class QueryInfoRet {
         this.ProviderName = ProviderName;
         this.RequestedDate = RequestedDate;
         this.ProcedureName = ProcedureName;
+        this.ResultAssistantID = ResultAssistantID;
+        this.ResultAssistantName = ResultAssistantName;
         this.ObservationUID = ObservationUID;
     }
 
@@ -149,6 +155,14 @@ public class QueryInfoRet {
         this.PatientClass = PatientClass;
     }
 
+    public String getPatientMasterID() {
+        return PatientMasterID;
+    }
+
+    public void setPatientMasterID(String PatientMasterID) {
+        this.PatientMasterID = PatientMasterID;
+    }
+
     public String getInPatientNO() {
         return InPatientNO;
     }
@@ -227,6 +241,22 @@ public class QueryInfoRet {
 
     public void setProcedureName(String ProcedureName) {
         this.ProcedureName = ProcedureName;
+    }
+
+    public String getResultAssistantID() {
+        return ResultAssistantID;
+    }
+
+    public void setResultAssistantID(String ResultAssistantID) {
+        this.ResultAssistantID = ResultAssistantID;
+    }
+
+    public String getResultAssistantName() {
+        return ResultAssistantName;
+    }
+
+    public void setResultAssistantName(String ResultAssistantName) {
+        this.ResultAssistantName = ResultAssistantName;
     }
 
     public String getObservationUID() {

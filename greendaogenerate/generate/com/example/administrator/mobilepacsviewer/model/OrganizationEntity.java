@@ -9,7 +9,6 @@ public class OrganizationEntity {
     private Long id;
     /** Not-null value. */
     private String OrganizationID;
-    /** Not-null value. */
     private String OrganizationName;
 
     public OrganizationEntity() {
@@ -43,12 +42,10 @@ public class OrganizationEntity {
         this.OrganizationID = OrganizationID;
     }
 
-    /** Not-null value. */
     public String getOrganizationName() {
         return OrganizationName;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setOrganizationName(String OrganizationName) {
         this.OrganizationName = OrganizationName;
     }

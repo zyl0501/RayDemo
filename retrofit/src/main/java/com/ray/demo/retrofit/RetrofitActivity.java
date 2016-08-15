@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.ray.demo.common.Jsons;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +48,7 @@ public class RetrofitActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<GitModel> call, Response<GitModel> response) {
                         String content = new Gson().toJson(response.body());
-                        consoleTv.setText(content);
+                        consoleTv.setText(Jsons.format(content));
                         Log.d("", content);
                     }
 

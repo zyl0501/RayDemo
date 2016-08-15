@@ -43,7 +43,7 @@ public class OrganizationEntityDao extends AbstractDao<OrganizationEntity, Long>
         db.execSQL("CREATE TABLE " + constraint + "\"ORGANIZATION_ENTITY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"ORGANIZATION_ID\" TEXT NOT NULL ," + // 1: OrganizationID
-                "\"ORGANIZATION_NAME\" TEXT NOT NULL );"); // 2: OrganizationName
+                "\"ORGANIZATION_NAME\" TEXT);"); // 2: OrganizationName
     }
 
     /** Drops the underlying database table. */
@@ -62,7 +62,11 @@ public class OrganizationEntityDao extends AbstractDao<OrganizationEntity, Long>
             stmt.bindLong(1, id);
         }
         stmt.bindString(2, entity.getOrganizationID());
-        stmt.bindString(3, entity.getOrganizationName());
+ 
+        String OrganizationName = entity.getOrganizationName();
+        if (OrganizationName != null) {
+            stmt.bindString(3, OrganizationName);
+        }
     }
 
     /** @inheritdoc */
@@ -77,7 +81,7 @@ public class OrganizationEntityDao extends AbstractDao<OrganizationEntity, Long>
         OrganizationEntity entity = new OrganizationEntity( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // OrganizationID
-            cursor.getString(offset + 2) // OrganizationName
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // OrganizationName
         );
         return entity;
     }
@@ -87,7 +91,7 @@ public class OrganizationEntityDao extends AbstractDao<OrganizationEntity, Long>
     public void readEntity(Cursor cursor, OrganizationEntity entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setOrganizationID(cursor.getString(offset + 1));
-        entity.setOrganizationName(cursor.getString(offset + 2));
+        entity.setOrganizationName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     /** @inheritdoc */

@@ -11,12 +11,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 import rx.Observable;
 import rx.Observer;
+import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Func0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -33,6 +37,7 @@ public class RxJavaMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java_main);
         consoleTv = (TextView) findViewById(R.id.console_tv);
+        Observable.create(Observer::onCompleted);
     }
 
     public void click_Subscribe(View view) {
@@ -208,5 +213,50 @@ public class RxJavaMainActivity extends AppCompatActivity {
                     }
                 })
                 .subscribe(subscriber);
+    }
+
+    public void click_Defer(View view){
+        Observable<String> observable = Observable.defer(new Func0<Observable<String>>() {
+            @Override
+            public Observable<String> call() {
+                return Observable.just("a", "b");
+            }
+        });
+    }
+
+    public void click_Timer(View view){
+        Observable.timer(2, TimeUnit.SECONDS,AndroidSchedulers.mainThread())
+                .map(new Func1<Long, Object>() {
+                    @Override
+                    public Object call(Long aLong) {
+                        return null;
+                    }
+                });
+
+        Observable.interval(2,2,TimeUnit.SECONDS);
+    }
+
+    public void click_Repeat(View view){
+        Observable.range(3,3).repeat(new Scheduler() {
+            @Override
+            public Worker createWorker() {
+                return null;
+            }
+        }).subscribe(new Subscriber<Integer>() {
+            @Override
+            public void onCompleted() {
+                System.out.println("Sequence complete.");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                System.out.println("error:" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(Integer i) {
+                System.out.println("Next:" + i.toString());
+            }
+        });
     }
 }

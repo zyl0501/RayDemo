@@ -8,6 +8,8 @@
     <string name="app_name_sample_trans">activity共享元素动画</string>
     <string name="app_name_wrap">自定义View的wrap问题</string>
     <string name="app_name_measure">MeasureTest</string>
+    <string name="app_name_float">悬浮窗口</string>
+    <string name="app_name_screen_dp">不同分辨率dp</string>
     <string name="app_name_badge">气泡</string>
     <string name="app_name_anim">动画</string>
 

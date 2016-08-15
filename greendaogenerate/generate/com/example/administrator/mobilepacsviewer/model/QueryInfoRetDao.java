@@ -34,17 +34,20 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
         public final static Property ObservationDate = new Property(8, String.class, "ObservationDate", false, "OBSERVATION_DATE");
         public final static Property MedRecNO = new Property(9, String.class, "MedRecNO", false, "MED_REC_NO");
         public final static Property PatientClass = new Property(10, String.class, "PatientClass", false, "PATIENT_CLASS");
-        public final static Property InPatientNO = new Property(11, String.class, "InPatientNO", false, "IN_PATIENT_NO");
-        public final static Property OutPatientNO = new Property(12, String.class, "OutPatientNO", false, "OUT_PATIENT_NO");
-        public final static Property PointOfCare = new Property(13, String.class, "PointOfCare", false, "POINT_OF_CARE");
-        public final static Property Bed = new Property(14, String.class, "Bed", false, "BED");
-        public final static Property OrganizationID = new Property(15, String.class, "OrganizationID", false, "ORGANIZATION_ID");
-        public final static Property RequestOrgName = new Property(16, String.class, "RequestOrgName", false, "REQUEST_ORG_NAME");
-        public final static Property RequestDeptName = new Property(17, String.class, "RequestDeptName", false, "REQUEST_DEPT_NAME");
-        public final static Property ProviderName = new Property(18, String.class, "ProviderName", false, "PROVIDER_NAME");
-        public final static Property RequestedDate = new Property(19, String.class, "RequestedDate", false, "REQUESTED_DATE");
-        public final static Property ProcedureName = new Property(20, String.class, "ProcedureName", false, "PROCEDURE_NAME");
-        public final static Property ObservationUID = new Property(21, String.class, "ObservationUID", false, "OBSERVATION_UID");
+        public final static Property PatientMasterID = new Property(11, String.class, "PatientMasterID", false, "PATIENT_MASTER_ID");
+        public final static Property InPatientNO = new Property(12, String.class, "InPatientNO", false, "IN_PATIENT_NO");
+        public final static Property OutPatientNO = new Property(13, String.class, "OutPatientNO", false, "OUT_PATIENT_NO");
+        public final static Property PointOfCare = new Property(14, String.class, "PointOfCare", false, "POINT_OF_CARE");
+        public final static Property Bed = new Property(15, String.class, "Bed", false, "BED");
+        public final static Property OrganizationID = new Property(16, String.class, "OrganizationID", false, "ORGANIZATION_ID");
+        public final static Property RequestOrgName = new Property(17, String.class, "RequestOrgName", false, "REQUEST_ORG_NAME");
+        public final static Property RequestDeptName = new Property(18, String.class, "RequestDeptName", false, "REQUEST_DEPT_NAME");
+        public final static Property ProviderName = new Property(19, String.class, "ProviderName", false, "PROVIDER_NAME");
+        public final static Property RequestedDate = new Property(20, String.class, "RequestedDate", false, "REQUESTED_DATE");
+        public final static Property ProcedureName = new Property(21, String.class, "ProcedureName", false, "PROCEDURE_NAME");
+        public final static Property ResultAssistantID = new Property(22, String.class, "ResultAssistantID", false, "RESULT_ASSISTANT_ID");
+        public final static Property ResultAssistantName = new Property(23, String.class, "ResultAssistantName", false, "RESULT_ASSISTANT_NAME");
+        public final static Property ObservationUID = new Property(24, String.class, "ObservationUID", false, "OBSERVATION_UID");
     };
 
 
@@ -71,17 +74,20 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
                 "\"OBSERVATION_DATE\" TEXT," + // 8: ObservationDate
                 "\"MED_REC_NO\" TEXT," + // 9: MedRecNO
                 "\"PATIENT_CLASS\" TEXT," + // 10: PatientClass
-                "\"IN_PATIENT_NO\" TEXT," + // 11: InPatientNO
-                "\"OUT_PATIENT_NO\" TEXT," + // 12: OutPatientNO
-                "\"POINT_OF_CARE\" TEXT," + // 13: PointOfCare
-                "\"BED\" TEXT," + // 14: Bed
-                "\"ORGANIZATION_ID\" TEXT," + // 15: OrganizationID
-                "\"REQUEST_ORG_NAME\" TEXT," + // 16: RequestOrgName
-                "\"REQUEST_DEPT_NAME\" TEXT," + // 17: RequestDeptName
-                "\"PROVIDER_NAME\" TEXT," + // 18: ProviderName
-                "\"REQUESTED_DATE\" TEXT," + // 19: RequestedDate
-                "\"PROCEDURE_NAME\" TEXT," + // 20: ProcedureName
-                "\"OBSERVATION_UID\" TEXT UNIQUE );"); // 21: ObservationUID
+                "\"PATIENT_MASTER_ID\" TEXT," + // 11: PatientMasterID
+                "\"IN_PATIENT_NO\" TEXT," + // 12: InPatientNO
+                "\"OUT_PATIENT_NO\" TEXT," + // 13: OutPatientNO
+                "\"POINT_OF_CARE\" TEXT," + // 14: PointOfCare
+                "\"BED\" TEXT," + // 15: Bed
+                "\"ORGANIZATION_ID\" TEXT," + // 16: OrganizationID
+                "\"REQUEST_ORG_NAME\" TEXT," + // 17: RequestOrgName
+                "\"REQUEST_DEPT_NAME\" TEXT," + // 18: RequestDeptName
+                "\"PROVIDER_NAME\" TEXT," + // 19: ProviderName
+                "\"REQUESTED_DATE\" TEXT," + // 20: RequestedDate
+                "\"PROCEDURE_NAME\" TEXT," + // 21: ProcedureName
+                "\"RESULT_ASSISTANT_ID\" TEXT," + // 22: ResultAssistantID
+                "\"RESULT_ASSISTANT_NAME\" TEXT," + // 23: ResultAssistantName
+                "\"OBSERVATION_UID\" TEXT UNIQUE );"); // 24: ObservationUID
     }
 
     /** Drops the underlying database table. */
@@ -150,59 +156,74 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
             stmt.bindString(11, PatientClass);
         }
  
+        String PatientMasterID = entity.getPatientMasterID();
+        if (PatientMasterID != null) {
+            stmt.bindString(12, PatientMasterID);
+        }
+ 
         String InPatientNO = entity.getInPatientNO();
         if (InPatientNO != null) {
-            stmt.bindString(12, InPatientNO);
+            stmt.bindString(13, InPatientNO);
         }
  
         String OutPatientNO = entity.getOutPatientNO();
         if (OutPatientNO != null) {
-            stmt.bindString(13, OutPatientNO);
+            stmt.bindString(14, OutPatientNO);
         }
  
         String PointOfCare = entity.getPointOfCare();
         if (PointOfCare != null) {
-            stmt.bindString(14, PointOfCare);
+            stmt.bindString(15, PointOfCare);
         }
  
         String Bed = entity.getBed();
         if (Bed != null) {
-            stmt.bindString(15, Bed);
+            stmt.bindString(16, Bed);
         }
  
         String OrganizationID = entity.getOrganizationID();
         if (OrganizationID != null) {
-            stmt.bindString(16, OrganizationID);
+            stmt.bindString(17, OrganizationID);
         }
  
         String RequestOrgName = entity.getRequestOrgName();
         if (RequestOrgName != null) {
-            stmt.bindString(17, RequestOrgName);
+            stmt.bindString(18, RequestOrgName);
         }
  
         String RequestDeptName = entity.getRequestDeptName();
         if (RequestDeptName != null) {
-            stmt.bindString(18, RequestDeptName);
+            stmt.bindString(19, RequestDeptName);
         }
  
         String ProviderName = entity.getProviderName();
         if (ProviderName != null) {
-            stmt.bindString(19, ProviderName);
+            stmt.bindString(20, ProviderName);
         }
  
         String RequestedDate = entity.getRequestedDate();
         if (RequestedDate != null) {
-            stmt.bindString(20, RequestedDate);
+            stmt.bindString(21, RequestedDate);
         }
  
         String ProcedureName = entity.getProcedureName();
         if (ProcedureName != null) {
-            stmt.bindString(21, ProcedureName);
+            stmt.bindString(22, ProcedureName);
+        }
+ 
+        String ResultAssistantID = entity.getResultAssistantID();
+        if (ResultAssistantID != null) {
+            stmt.bindString(23, ResultAssistantID);
+        }
+ 
+        String ResultAssistantName = entity.getResultAssistantName();
+        if (ResultAssistantName != null) {
+            stmt.bindString(24, ResultAssistantName);
         }
  
         String ObservationUID = entity.getObservationUID();
         if (ObservationUID != null) {
-            stmt.bindString(22, ObservationUID);
+            stmt.bindString(25, ObservationUID);
         }
     }
 
@@ -227,17 +248,20 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // ObservationDate
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // MedRecNO
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // PatientClass
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // InPatientNO
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // OutPatientNO
-            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // PointOfCare
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // Bed
-            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // OrganizationID
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // RequestOrgName
-            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // RequestDeptName
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // ProviderName
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // RequestedDate
-            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // ProcedureName
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21) // ObservationUID
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // PatientMasterID
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // InPatientNO
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // OutPatientNO
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // PointOfCare
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // Bed
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // OrganizationID
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // RequestOrgName
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // RequestDeptName
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // ProviderName
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // RequestedDate
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // ProcedureName
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // ResultAssistantID
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23), // ResultAssistantName
+            cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24) // ObservationUID
         );
         return entity;
     }
@@ -256,17 +280,20 @@ public class QueryInfoRetDao extends AbstractDao<QueryInfoRet, Long> {
         entity.setObservationDate(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setMedRecNO(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setPatientClass(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setInPatientNO(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setOutPatientNO(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setPointOfCare(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
-        entity.setBed(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setOrganizationID(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
-        entity.setRequestOrgName(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setRequestDeptName(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
-        entity.setProviderName(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setRequestedDate(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setProcedureName(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
-        entity.setObservationUID(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setPatientMasterID(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setInPatientNO(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setOutPatientNO(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setPointOfCare(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setBed(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setOrganizationID(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setRequestOrgName(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setRequestDeptName(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setProviderName(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setRequestedDate(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setProcedureName(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setResultAssistantID(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setResultAssistantName(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
+        entity.setObservationUID(cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24));
      }
     
     /** @inheritdoc */

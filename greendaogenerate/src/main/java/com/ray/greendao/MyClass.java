@@ -13,10 +13,17 @@ public class MyClass {
         addSearchTemplate(schema);
         addQueryInfoRet(schema);
         addDepartOrder(schema);
+        addDicItemMst(schema);
         addOrganizationOrder(schema);
-        addIpAddress(schema);
+//        addOrgConfig(schema);
 
         new DaoGenerator().generateAll(schema, "E:\\workspace\\RayDemo\\greendaogenerate\\generate");
+
+        Schema schema2 = new Schema(1, "com.example.administrator.mobilepacsviewer.app");
+        schema2.setDefaultJavaPackageDao("CustomDao");
+        addIpAddress(schema2);
+//        addOrganizationOrder(schema2);
+        new DaoGenerator().generateAll(schema2, "E:\\workspace\\RayDemo\\greendaogenerate\\generate");
     }
 
     private static void addSearchTemplate(Schema schema) {
@@ -25,6 +32,7 @@ public class MyClass {
         entity.addStringProperty("SearchName");
         entity.addStringProperty("AccessionNumber");
         entity.addStringProperty("Name");
+        entity.addStringProperty("PatientMasterID");
         entity.addStringProperty("MedRecNO");
         entity.addStringProperty("OrganizationID");
         entity.addStringProperty("RequestDeptName");
@@ -32,6 +40,10 @@ public class MyClass {
         entity.addStringProperty("ServiceSectID");
         entity.addStringProperty("RequestedDateStart");
         entity.addStringProperty("RequestedDateEnd");
+        entity.addStringProperty("ObservationDateStart").codeBeforeField("观察时间(检查时间)，开始");
+        entity.addStringProperty("ObservationDateEnd").codeBeforeField("观察时间(检查时间)，结束");
+        entity.addStringProperty("RegTimeStart").codeBeforeField("登记时间，开始");
+        entity.addStringProperty("RegTimeEnd").codeBeforeField("登记时间，结束");
 
         int Page;
         int Rows;
@@ -50,6 +62,7 @@ public class MyClass {
         entity.addStringProperty("ObservationDate");
         entity.addStringProperty("MedRecNO");
         entity.addStringProperty("PatientClass");
+        entity.addStringProperty("PatientMasterID");
         entity.addStringProperty("InPatientNO");
         entity.addStringProperty("OutPatientNO");
         entity.addStringProperty("PointOfCare");
@@ -60,6 +73,8 @@ public class MyClass {
         entity.addStringProperty("ProviderName");
         entity.addStringProperty("RequestedDate");
         entity.addStringProperty("ProcedureName");
+        entity.addStringProperty("ResultAssistantID");
+        entity.addStringProperty("ResultAssistantName");
         entity.addStringProperty("ObservationUID").unique();
     }
 
@@ -84,21 +99,26 @@ public class MyClass {
         Entity customer = schema.addEntity("IPAddressEntity");
         customer.addIdProperty();
         customer.addStringProperty("IPName");
-        customer.addStringProperty("IPLogInAddr");
-        customer.addStringProperty("IPImageAddr");
+        customer.addStringProperty("IPLogInAddrLan");
+        customer.addStringProperty("IPImageAddrLan");
+        customer.addStringProperty("IPLogInAddrNet");
+        customer.addStringProperty("IPImageAddrNet");
+        customer.addStringProperty("OrganizationID").unique();
+        customer.addBooleanProperty("isSelLan");
     }
 
     private static void addDepartOrder(Schema schema) {
         Entity customer = schema.addEntity("DepartmentEntity");
         customer.addIdProperty();
         customer.addStringProperty("DeptName").notNull();
+        customer.addStringProperty("DeptID").notNull();
     }
 
     private static void addOrganizationOrder(Schema schema) {
         Entity customer = schema.addEntity("OrganizationEntity");
         customer.addIdProperty();
         customer.addStringProperty("OrganizationID").notNull();
-        customer.addStringProperty("OrganizationName").notNull();
+        customer.addStringProperty("OrganizationName");
     }
 
     private static void addExamSub(Schema schema){
@@ -115,5 +135,20 @@ public class MyClass {
         customer.addStringProperty("SubscriptionSeq");
         customer.addStringProperty("SubscriptionType");
         customer.addStringProperty("UserUID");
+    }
+
+    private static void addOrgConfig(Schema schema) {
+        Entity customer = schema.addEntity("ServiceOrgDO");
+        customer.addIdProperty();
+        customer.addStringProperty("OrganizationID").notNull().unique();
+        customer.addStringProperty("OrganizationName");
+    }
+
+    private static void addDicItemMst(Schema schema){
+        Entity customer = schema.addEntity("DicItemMstEntity");
+        customer.addIdProperty();
+        customer.addStringProperty("ItemName");
+        customer.addStringProperty("ItemRepresen");
+        customer.addStringProperty("TypeCode");
     }
 }

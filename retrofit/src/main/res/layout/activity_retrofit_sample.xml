@@ -18,8 +18,9 @@
     <TextView
         android:id="@+id/console_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars = "vertical"
+        android:scrollbarStyle="insideInset"
         />
 
 </LinearLayout>

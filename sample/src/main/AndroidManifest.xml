@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ray.demo.sample">
 
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
@@ -94,6 +97,26 @@
         </activity>
 
         <activity
+            android:name=".floatwindow.FloatTestActivity"
+            android:label="@string/app_name_float"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.ray.demo.RAY_DEMO" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ScreenDpTestActivity"
+            android:label="@string/app_name_screen_dp"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.ray.demo.RAY_DEMO" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".BadgeActivity"
             android:label="@string/app_name_badge"
             android:theme="@style/AppTheme"
@@ -103,7 +126,6 @@
                 <category android:name="com.ray.demo.RAY_DEMO" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".anim.AnimationActivity"
             android:label="@string/app_name_anim"

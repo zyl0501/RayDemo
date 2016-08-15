@@ -20,4 +20,10 @@ public class ActivityModule {
     Activity activity() {
         return this.activity;
     }
+
+    @Provides
+    @PerActivity
+    int provideInt() {
+        return 99;
+    }
 }

@@ -10,6 +10,7 @@ public class SearchTemplateEntity {
     private String SearchName;
     private String AccessionNumber;
     private String Name;
+    private String PatientMasterID;
     private String MedRecNO;
     private String OrganizationID;
     private String RequestDeptName;
@@ -17,6 +18,14 @@ public class SearchTemplateEntity {
     private String ServiceSectID;
     private String RequestedDateStart;
     private String RequestedDateEnd;
+     瑙傚療鏃堕棿(妫�鏌ユ椂闂�)锛屽紑濮�
+    private String ObservationDateStart;
+     瑙傚療鏃堕棿(妫�鏌ユ椂闂�)锛岀粨鏉�
+    private String ObservationDateEnd;
+     鐧昏鏃堕棿锛屽紑濮�
+    private String RegTimeStart;
+     鐧昏鏃堕棿锛岀粨鏉�
+    private String RegTimeEnd;
 
     public SearchTemplateEntity() {
     }
@@ -25,11 +34,12 @@ public class SearchTemplateEntity {
         this.id = id;
     }
 
-    public SearchTemplateEntity(Long id, String SearchName, String AccessionNumber, String Name, String MedRecNO, String OrganizationID, String RequestDeptName, String PatientClass, String ServiceSectID, String RequestedDateStart, String RequestedDateEnd) {
+    public SearchTemplateEntity(Long id, String SearchName, String AccessionNumber, String Name, String PatientMasterID, String MedRecNO, String OrganizationID, String RequestDeptName, String PatientClass, String ServiceSectID, String RequestedDateStart, String RequestedDateEnd, String ObservationDateStart, String ObservationDateEnd, String RegTimeStart, String RegTimeEnd) {
         this.id = id;
         this.SearchName = SearchName;
         this.AccessionNumber = AccessionNumber;
         this.Name = Name;
+        this.PatientMasterID = PatientMasterID;
         this.MedRecNO = MedRecNO;
         this.OrganizationID = OrganizationID;
         this.RequestDeptName = RequestDeptName;
@@ -37,6 +47,10 @@ public class SearchTemplateEntity {
         this.ServiceSectID = ServiceSectID;
         this.RequestedDateStart = RequestedDateStart;
         this.RequestedDateEnd = RequestedDateEnd;
+        this.ObservationDateStart = ObservationDateStart;
+        this.ObservationDateEnd = ObservationDateEnd;
+        this.RegTimeStart = RegTimeStart;
+        this.RegTimeEnd = RegTimeEnd;
     }
 
     public Long getId() {
@@ -69,6 +83,14 @@ public class SearchTemplateEntity {
 
     public void setName(String Name) {
         this.Name = Name;
+    }
+
+    public String getPatientMasterID() {
+        return PatientMasterID;
+    }
+
+    public void setPatientMasterID(String PatientMasterID) {
+        this.PatientMasterID = PatientMasterID;
     }
 
     public String getMedRecNO() {
@@ -125,6 +147,38 @@ public class SearchTemplateEntity {
 
     public void setRequestedDateEnd(String RequestedDateEnd) {
         this.RequestedDateEnd = RequestedDateEnd;
+    }
+
+    public String getObservationDateStart() {
+        return ObservationDateStart;
+    }
+
+    public void setObservationDateStart(String ObservationDateStart) {
+        this.ObservationDateStart = ObservationDateStart;
+    }
+
+    public String getObservationDateEnd() {
+        return ObservationDateEnd;
+    }
+
+    public void setObservationDateEnd(String ObservationDateEnd) {
+        this.ObservationDateEnd = ObservationDateEnd;
+    }
+
+    public String getRegTimeStart() {
+        return RegTimeStart;
+    }
+
+    public void setRegTimeStart(String RegTimeStart) {
+        this.RegTimeStart = RegTimeStart;
+    }
+
+    public String getRegTimeEnd() {
+        return RegTimeEnd;
+    }
+
+    public void setRegTimeEnd(String RegTimeEnd) {
+        this.RegTimeEnd = RegTimeEnd;
     }
 
 }
