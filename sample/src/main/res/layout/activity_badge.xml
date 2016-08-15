@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/tab_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="click"
+                android:layout_margin="15dp"
+                android:text="tab_1" />
+        </com.ray.demo.sample.BadgeView>
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/tab_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:onClick="click"
+                android:layout_margin="15dp"
+                android:text="tab_2" />
+        </com.ray.demo.sample.BadgeView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/tab_1_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:onClick="click"
+                android:text="tab_1_1" />
+        </com.ray.demo.sample.BadgeView>
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/tab_1_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:onClick="click"
+                android:text="tab_1_2" />
+        </com.ray.demo.sample.BadgeView>
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/tab_1_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:onClick="click"
+                android:text="tab_1_3" />
+        </com.ray.demo.sample.BadgeView>
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/tab_1_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:onClick="click"
+                android:text="tab_1_4" />
+        </com.ray.demo.sample.BadgeView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.ray.demo.sample.BadgeView
+            android:id="@+id/item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:onClick="click"
+                android:text="item_1" />
+        </com.ray.demo.sample.BadgeView>
+    </FrameLayout>
+
+    <com.ray.demo.sample.BadgeView
+        android:id="@+id/_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:onClick="click"
+            android:text="tab" />
+    </com.ray.demo.sample.BadgeView>
+</LinearLayout>
