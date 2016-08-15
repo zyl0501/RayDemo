@@ -9,6 +9,7 @@
     <string name="app_name_wrap">自定义View的wrap问题</string>
     <string name="app_name_measure">MeasureTest</string>
     <string name="app_name_badge">气泡</string>
+    <string name="app_name_anim">动画</string>
 
     <string name="onstoptask">onStopTask</string>
     <string name="onstarttask">onStartTask</string>
