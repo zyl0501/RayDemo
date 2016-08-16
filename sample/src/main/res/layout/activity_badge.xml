@@ -128,4 +128,15 @@
             android:onClick="click"
             android:text="tab" />
     </com.ray.demo.sample.BadgeView>
+
+    <com.ray.demo.sample.BadgeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ttttttttttt" />
+    </com.ray.demo.sample.BadgeLayout>
 </LinearLayout>

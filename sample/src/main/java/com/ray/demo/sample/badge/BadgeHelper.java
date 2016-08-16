@@ -238,15 +238,15 @@ public class BadgeHelper {
 
     private TreeNode<BadgeNumber> findLineTopParent(TreeNode<BadgeNumber> node) {
         TreeNode<BadgeNumber> parent = node.getParentNode();
-        boolean hasFind = false;
+        TreeNode<BadgeNumber> result = node;
         while (parent != null && parent.getChildList() != null && parent.getChildList().size() == 1) {
             if(parent.getSelfId() == BadgeGraph.root){
                 return parent;
             }
+            result = parent;
             parent = parent.getParentNode();
-            hasFind = true;
         }
-        return hasFind ? parent : node;
+        return result;
     }
 
     /**
