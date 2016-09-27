@@ -29,11 +29,37 @@
         android:text="FlatMap"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click_Empty_Error"
+        android:text="Empty_Error"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click_Range"
+        android:text="click_Range"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click_Repeat"
+        android:text="click_Repeat"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click_Start"
+        android:text="click_Start"
+        />
     <TextView
         android:id="@+id/console_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         />
+
 
 </LinearLayout>

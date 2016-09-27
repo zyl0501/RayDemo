@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import rx.Observable;
 import rx.Observer;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
@@ -23,6 +25,8 @@ import rx.functions.Action1;
 import rx.functions.Func0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rx.util.async.Async;
+import rx.util.async.operators.OperatorStartFuture;
 
 /**
  * Created by Ray on 16/2/16.
@@ -215,7 +219,7 @@ public class RxJavaMainActivity extends AppCompatActivity {
                 .subscribe(subscriber);
     }
 
-    public void click_Defer(View view){
+    public void click_Defer(View view) {
         Observable<String> observable = Observable.defer(new Func0<Observable<String>>() {
             @Override
             public Observable<String> call() {
@@ -224,8 +228,8 @@ public class RxJavaMainActivity extends AppCompatActivity {
         });
     }
 
-    public void click_Timer(View view){
-        Observable.timer(2, TimeUnit.SECONDS,AndroidSchedulers.mainThread())
+    public void click_Timer(View view) {
+        Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .map(new Func1<Long, Object>() {
                     @Override
                     public Object call(Long aLong) {
@@ -233,29 +237,114 @@ public class RxJavaMainActivity extends AppCompatActivity {
                     }
                 });
 
-        Observable.interval(2,2,TimeUnit.SECONDS);
+        Observable.interval(2, 2, TimeUnit.SECONDS);
     }
 
-    public void click_Repeat(View view){
-        Observable.range(3,3).repeat(new Scheduler() {
-            @Override
-            public Worker createWorker() {
-                return null;
-            }
-        }).subscribe(new Subscriber<Integer>() {
+    public void click_Range(View view) {
+        consoleTv.setText("");
+        Observable.range(3, 3).subscribe(new Subscriber<Integer>() {
             @Override
             public void onCompleted() {
-                System.out.println("Sequence complete.");
+                consoleTv.append("Sequence complete.");
             }
 
             @Override
             public void onError(Throwable e) {
-                System.out.println("error:" + e.getMessage());
+                consoleTv.append("error:" + e.getMessage());
             }
 
             @Override
             public void onNext(Integer i) {
-                System.out.println("Next:" + i.toString());
+                consoleTv.append("Next:" + i.toString());
+            }
+        });
+    }
+    public void click_Repeat(View view) {
+        consoleTv.setText("");
+        Observable.just(1, 2,3,4,5).repeat(3).subscribe(new Subscriber<Integer>() {
+            @Override
+            public void onCompleted() {
+                consoleTv.append("Sequence complete.");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                consoleTv.append("error:" + e.getMessage());
+            }
+
+            @Override
+            public void onNext(Integer i) {
+                consoleTv.append("Next:" + i.toString());
+            }
+        });
+    }
+
+    public void click_Empty_Error(View view) {
+        Observable.<Integer>empty().subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                consoleTv.setText("empty: " + integer);
+            }
+        });
+        Observable.error(new Throwable("error")).subscribe(new Subscriber<Object>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                consoleTv.setText("error: " + e);
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+        });
+    }
+    public void click_Start(View view) {
+        String s =null;
+        Async.fromRunnable(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        },s).subscribe();
+        OperatorStartFuture.<Integer>startFuture(new Func0<Future<Integer>>() {
+            @Override
+            public Future<Integer> call() {
+                return new Future<Integer>() {
+                    @Override
+                    public boolean cancel(boolean b) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean isCancelled() {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean isDone() {
+                        return false;
+                    }
+
+                    @Override
+                    public Integer get() throws InterruptedException, ExecutionException {
+                        return 5;
+                    }
+
+                    @Override
+                    public Integer get(long l, TimeUnit timeUnit) throws InterruptedException, ExecutionException, TimeoutException {
+                        return null;
+                    }
+                };
+            }
+        }).subscribe(new Action1<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                consoleTv.setText("call: " + integer);
             }
         });
     }
