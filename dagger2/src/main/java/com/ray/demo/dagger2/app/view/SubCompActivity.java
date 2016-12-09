@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.ray.demo.dagger2.R;
-import com.ray.demo.dagger2.component.cdi.component.DaggerParentComponent;
-import com.ray.demo.dagger2.component.cdi.module.ChildModule;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,10 +25,10 @@ public class SubCompActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dagger_main);
 
-        DaggerParentComponent.builder()
-                .build()
-                .plus(new ChildModule())
-                .inject(this);
+//        DaggerParentComponent.builder()
+//                .build()
+//                .plus(new ChildModule())
+//                .inject(this);
 
         Log.d("raytest", "parentStr->" + parentStr);
     }

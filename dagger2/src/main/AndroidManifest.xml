@@ -6,7 +6,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name=".app.view.DraggerActivity"
+            android:name=".app.view.DaggerLoginActivity"
             android:label="@string/app_name_dagger"
             android:theme="@style/Base.Theme.AppCompat.Light">
             <intent-filter>
@@ -22,7 +22,17 @@
         <activity
             android:name=".app.view.SplashActivity"
             android:label="@string/app_name_dagger"
-            android:theme="@style/Base.Theme.AppCompat.Light"></activity>
+            android:theme="@style/Base.Theme.AppCompat.Light"/>
+
+        <activity
+            android:name=".app.view.UserActivity"
+            android:label="@string/app_name_dagger"
+            android:theme="@style/Base.Theme.AppCompat.Light"/>
+
+        <activity
+            android:name=".app.view.UserSubActivity"
+            android:label="@string/app_name_dagger"
+            android:theme="@style/Base.Theme.AppCompat.Light"/>
 
         <activity
             android:name=".app.view.SubCompActivity"

@@ -1,7 +1,9 @@
 package com.ray.demo.dagger2.component.cdi.module;
 
-import com.ray.demo.dagger2.app.present.AnalyticsManager;
-import com.ray.demo.dagger2.component.cdi.PerFragment;
+import android.app.Application;
+
+import com.ray.demo.dagger2.app.HttpClient;
+import com.ray.demo.dagger2.component.cdi.AppScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,9 +14,23 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
+    Application mApplication;
+    HttpClient httpClient;
+
+    public AppModule(Application application) {
+        mApplication = application;
+        httpClient = new HttpClient();
+    }
+
     @Provides
-    @PerFragment
-    AnalyticsManager provideAnalyticsManager() {
-        return new AnalyticsManager();
+    @AppScope
+    Application providesApplication() {
+        return mApplication;
+    }
+
+    @Provides
+    @AppScope
+    HttpClient providesHttpClient(){
+        return httpClient;
     }
 }

@@ -1,9 +1,8 @@
 package com.ray.demo.dagger2.component.cdi.module;
 
-import com.ray.demo.dagger2.app.present.UserPresent;
-import com.ray.demo.dagger2.component.cdi.PerUser;
-
-import javax.inject.Named;
+import com.ray.demo.dagger2.app.model.User;
+import com.ray.demo.dagger2.app.model.UserManager;
+import com.ray.demo.dagger2.component.cdi.UserScope;
 
 import dagger.Module;
 import dagger.Provides;
@@ -11,27 +10,15 @@ import dagger.Provides;
 @Module
 public class UserModule {
 
-    @Named("1 arg")
-    @Provides
-    UserPresent userPresent2(@Named("user") String info) {
-        return new UserPresent(info);
-    }
+  User user;
 
-    @Named("no arg")
-    @PerUser
-    @Provides
-    UserPresent userPresent(){
-        return new UserPresent();
-    }
-    @Named("no arg")
-    @Provides
-    int integer(){
-        return 12;
-    }
+  public UserModule(User user) {
+    this.user = user;
+  }
 
-    @Provides
-    @Named("user")
-    String getInfo() {
-        return "User module generate info";
-    }
+  @UserScope
+  @Provides
+  UserManager providesUser() {
+    return new UserManager(user);
+  }
 }
