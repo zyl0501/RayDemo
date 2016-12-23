@@ -54,4 +54,5 @@ dependencies {
     compile project(':dagger2')
     compile project(':sample')
     compile project(':rxjava')
+    compile 'com.ray.common:common:1.0.0'
 }
